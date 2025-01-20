@@ -1,5 +1,10 @@
 package com.eg.yamocker.backend.controller;
 
+import com.eg.yamocker.backend.controller.request.CreateMock;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -36,18 +41,29 @@ public class MainController {
 //    }
 
     @PostMapping
-    public void createMock() {
+    public void createMock(@RequestBody CreateMock createMock) {
     }
 
     @DeleteMapping("/{mockId}")
     public void deleteMock(@PathVariable String mockId) {
     }
 
-    @GetMapping("/{mockId}")
-    public void getMock(@PathVariable String mockId) {
-    }
+//    @GetMapping("/{mockId}")
+//    public void getMock(@PathVariable String mockId) {
+//    }
 
     @PutMapping
     public void updateMock() {
     }
+
+    // This method returns the mocked response based on the URL
+    @GetMapping("/**")
+    public ResponseEntity<String> getMockResponse(HttpServletRequest request) {
+        String responseBody = "asd";
+
+        ResponseEntity<String> response = ResponseEntity.status(HttpStatus.OK).body(responseBody);
+
+        return response;
+    }
+
 }
